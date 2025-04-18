@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+//バカ遅いので誰か修正して！
 struct HashString{
     using ll=long long;
     int N=0;
@@ -30,9 +30,15 @@ struct HashString{
         N=s.size();
         hash_data.resize(N+1,make_pair(0,0));
         str=s;
+        ll powr=1;
+        ll powr2=1;
         for(int i=0;i<N;i++){
-            hash_data[i+1].first=hash_data[i].first+s[i]*mypow(r,i+1,mod);
-            hash_data[i+1].second=hash_data[i].second+s[i]*mypow(r2,i+1,mod2);
+            powr*=r;
+            powr%=mod;
+            powr2*=r;
+            powr2%=mod2;
+            hash_data[i+1].first=hash_data[i].first+s[i]*powr;
+            hash_data[i+1].second=hash_data[i].second+s[i]*powr2;
             hash_data[i+1].first%=mod;
             hash_data[i+1].second%=mod2;
         }
